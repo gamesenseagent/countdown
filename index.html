@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Обратный отсчёт</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    .timer {
+      background: #1e293b;
+      margin: 15px auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 400px;
+      font-size: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .time {
+      font-size: 28px;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Обратный отсчёт</h1>
+
+  <div class="timer">
+    До 15 ноября осталось: <span id="nov15" class="time"></span>
+  </div>
+  <div class="timer">
+    До 31 декабря осталось: <span id="dec31" class="time"></span>
+  </div>
+  <div class="timer">
+    До 23 февраля осталось: <span id="feb23" class="time"></span>
+  </div>
+  <div class="timer">
+    До 1 июня осталось: <span id="jun1" class="time"></span>
+  </div>
+
+  <script>
+    function countdown(id, date) {
+      function update() {
+        let now = new Date();
+        let diff = date - now;
+
+        if (diff <= 0) {
+          document.getElementById(id).textContent = "Событие наступило!";
+          return;
+        }
+
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        let minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+        document.getElementById(id).textContent =
+          days + " д " + hours + " ч " + minutes + " м";
+      }
+      update();
+      setInterval(update, 1000 * 60); // обновляем каждую минуту
+    }
+
+    let year = new Date().getFullYear();
+
+    countdown("nov15", new Date(year, 10, 15, 0, 0, 0));  // месяцы: 0=январь
+    countdown("dec31", new Date(year, 11, 31, 0, 0, 0));
+    countdown("feb23", new Date(year+1, 1, 23, 0, 0, 0)); // февраль в след. году
+    countdown("jun1",  new Date(year+1, 5, 1, 0, 0, 0));  // июнь в след. году
+  </script>
+</body>
+</html>
