@@ -34,7 +34,7 @@
   <h1>Обратный отсчёт</h1>
 
   <div class="timer">
-    До 15 ноября осталось: <span id="nov15" class="time"></span>
+    До 5 ноября осталось: <span id="nov5" class="time"></span>
   </div>
   <div class="timer">
     До 31 декабря осталось: <span id="dec31" class="time"></span>
@@ -65,15 +65,15 @@
           days + " д " + hours + " ч " + minutes + " м";
       }
       update();
-      setInterval(update, 1000 * 60); // обновляем каждую минуту
+      setInterval(update, 1000 * 60);
     }
 
     let year = new Date().getFullYear();
 
-    countdown("nov15", new Date(year, 10, 15, 0, 0, 0));  // месяцы: 0=январь
+    countdown("nov5", new Date(year, 10, 5, 0, 0, 0));
     countdown("dec31", new Date(year, 11, 31, 0, 0, 0));
-    countdown("feb23", new Date(year+1, 1, 23, 0, 0, 0)); // февраль в след. году
-    countdown("jun1",  new Date(year+1, 5, 1, 0, 0, 0));  // июнь в след. году
+    countdown("feb23", new Date(year+1, 1, 23, 0, 0, 0));
+    countdown("jun1",  new Date(year+1, 5, 1, 0, 0, 0));
   </script>
 </body>
 </html>
